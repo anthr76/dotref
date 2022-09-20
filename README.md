@@ -4,6 +4,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/ovk/dotref/badge.svg?branch=master)](https://coveralls.io/github/ovk/dotref?branch=master)
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/ovk/dotref.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/ovk/dotref/context:python)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/dotref)](https://pypi.python.org/pypi/dotref)
+[![Copr build status](https://copr.fedorainfracloud.org/coprs/anthr76/dotref/package/python-dotref/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/anthr76/dotref/package/python-dotref/)
 
 
 `dotref` is a simple tool to manage dotfiles across multiple devices.
