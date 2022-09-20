@@ -15,6 +15,7 @@ BuildArch:      noarch
 
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(setuptools)
+BuildRequires:  python3dist(pytest)
 
 %description
 dotref is a simple tool to manage dotfiles across multiple devices.
