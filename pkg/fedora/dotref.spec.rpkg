@@ -1,0 +1,61 @@
+# vim: syntax=spec
+# Created by pyp2rpm-3.3.8
+%global pypi_name {{{ git_name }}}
+%global pypi_version {{{ git_version }}}
+
+Name:           python-%{pypi_name}
+Version:        %{pypi_version}
+Release:        {{{ git_release }}}%{?dist}
+Summary:        Simple tool to manage dotfiles
+
+License:        MIT
+URL:            https://github.com/ovk/dotref
+Source0:        {{{ git_pack path=$(git rev-parse --show-toplevel) }}}
+BuildArch:      noarch
+
+BuildRequires:  python3-devel
+BuildRequires:  python3dist(setuptools)
+
+%description
+dotref is a simple tool to manage dotfiles across multiple devices.
+
+%package -n     python3-%{pypi_name}
+Summary:        %{summary}
+%{?python_provide:%python_provide python3-%{pypi_name}}
+
+Requires:       python3dist(coverage)
+Requires:       python3dist(setuptools)
+%description -n python3-%{pypi_name}
+dotref is a simple tool to manage dotfiles across multiple devices.
+
+
+%prep
+{{{ git_setup_macro path=$(git rev-parse --show-toplevel) }}}
+
+%build
+%py3_build
+
+%install
+%py3_install
+# Install shell completions
+install -Dpm 0644 completions/completion.bash %{buildroot}%{_datadir}/bash-completion/completions/%{pypi_name}
+install -Dpm 0644 completions/completion.fish %{buildroot}%{_datadir}/fish/vendor_completions.d/%{pypi_name}.fish
+
+%check
+%pytest
+
+%files -n python3-%{pypi_name}
+%license LICENSE
+%doc README.md
+%{_bindir}/dotref
+%{python3_sitelib}/%{pypi_name}
+%{python3_sitelib}/%{pypi_name}-%{pypi_version}-py%{python3_version}.egg-info
+%dir %{_datadir}/bash-completion
+%dir %{_datadir}/bash-completion/completions
+%{_datadir}/bash-completion/completions/%{pypi_name}
+%dir %{_datadir}/fish
+%dir %{_datadir}/fish/vendor_completions.d
+%{_datadir}/fish/vendor_completions.d/%{pypi_name}.fish
+
+%changelog
+{{{ git_changelog }}}
